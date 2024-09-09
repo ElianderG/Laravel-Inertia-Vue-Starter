@@ -24,6 +24,7 @@ const show = ref(false);
                     <div @click="show = !show" 
                     class="flex items-center gap-2 px-3 py-1
                     rounded-lg hover:bg-slate-700 cursor-pointer"
+                    :class="{'bg-slate-700' : show }"
                     >
                         <p>{{ user.name }}</p>
                         <i class="fa-solid fa-angle-down"></i>
@@ -53,7 +54,7 @@ const show = ref(false);
 
                 <!-- Guest -->
 
-                <div v-else>
+                <div v-else class="space-x-6">
                 
                     <NavLink routeName="login" componentName="Auth/Login">Login</NavLink>
                     <NavLink routeName="register" componentName="Auth/Register">Registrar</NavLink>
