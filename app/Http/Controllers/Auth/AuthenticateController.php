@@ -30,4 +30,14 @@ class AuthenticateController extends Controller
             'email' => 'As credenciais fornecidas não correspondem aos nossos registros',
         ]) ->onlyInput('email');
     }
+
+    public function destroy(Request $request){
+        Auth::logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()->route('home');
+
+    }
 }
