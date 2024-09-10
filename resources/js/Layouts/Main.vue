@@ -37,7 +37,14 @@ const show = ref(false);
                  bg-slate-800 text-white rounded-lg border-slate-100
                  border overflow-hidden w-40"
                  >
-                    <Link class="block w-full px-6 py-3
+                    <Link 
+                    :href="route('profile.edit')"
+                    class="block w-full px-6 py-3
+                    hover:bg-slate-700 text-left"
+                    >Perfil</Link>
+                    <Link 
+                    :href="route('dashboard')"
+                    class="block w-full px-6 py-3
                     hover:bg-slate-700 text-left"
                     >Dashboard</Link>
 
