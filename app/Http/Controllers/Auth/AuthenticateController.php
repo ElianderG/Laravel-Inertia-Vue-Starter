@@ -10,7 +10,9 @@ use Inertia\Inertia;
 class AuthenticateController extends Controller
 {
     public function create(){
-        return Inertia::render('Auth/Login');
+        return Inertia::render('Auth/Login', [
+            'status' => session('status'),
+        ]);
     }
 
     public function store(Request $request)
@@ -23,11 +25,21 @@ class AuthenticateController extends Controller
         if (Auth::attempt($credentials, $request->boolean('remember'))) 
         {
             $request->session()->regenerate();
-            return redirect()->intended(route('home'));
+            return redirect()->intended('dashboard');
         }
 
         return back()->withErrors([
             'email' => 'As credenciais fornecidas não correspondem aos nossos registros',
         ]) ->onlyInput('email');
+    }
+
+    public function destroy(Request $request){
+        Auth::logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()->route('home');
+
     }
 }
